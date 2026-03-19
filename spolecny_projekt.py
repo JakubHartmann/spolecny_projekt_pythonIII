@@ -26,7 +26,7 @@ class Lod:
         self.rect = pygame.rect.Rect(self.x, self.y, 50, 50)
         self.pocitadlo_pohyb = 0
         self.pocitadlo_pusteni_jidla = 0
-        self.image = pygame.image.load("obrazek.gif")
+        self.image = pygame.image.load("lod.gif")
         self.scaled_image = pygame.transform.scale(self.image, (50, 50))
 
     def ukaz(self):
