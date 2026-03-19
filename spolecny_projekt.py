@@ -17,12 +17,13 @@ class Postavicka:
     def ukaz(self):
         okno.blit(self.image, self.rect)
 
-    def pohyb(self,tlacitka):
+    def pohyb(self):
+        zmacknuti = pygame.key.get_pressed()
         self.dx = 0
         self.speed = 4
-        if tlacitka[pygame.K_d]:
+        if zmacknuti[pygame.K_d]:
             self.dx = 1
-        if tlacitka[pygame.K_a]:
+        if zmacknuti[pygame.K_a]:
             self.dx = -1
         self.x += self.dx * self.speed
         self.rect.topleft = (self.x, self.y)
@@ -111,12 +112,9 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-
-
-    zmacknuti = pygame.key.get_pressed()
-
     okno.fill("Black")
     postavicka.ukaz()
+    postavicka.pohyb()
     lod.ukaz()
     lod.pusteni_jidla()
     lod.pohyb()
