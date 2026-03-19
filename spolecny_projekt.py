@@ -19,18 +19,35 @@ class Postavicka:
 
 class Lod:
     def __init__(self):
-        self.x = 450
-        self.y = 100
+        self.x = 50
+        self.y = 70
         self.rect = pygame.rect.Rect(self.x, self.y, 50, 50)
         self.pocitadlo_pohyb = 0
         self.pocitadlo_pusteni_jidla = 0
-        self.image = None
+        self.smer = 1 
+        self.image = pygame.image.load("ovoce.png")# change afterwards
 
     def ukaz(self):
-        pass
+        okno.blit(self.image, self.rect)# delete 
 
     def pohyb(self):
-        pass
+        
+        self.pocitadlo_pohyb += 1
+        
+        if self.x >= 770:
+         self.smer = -1
+        elif self.x <= 70:
+            self.smer = 1
+
+
+        if self.pocitadlo_pohyb == 10:
+            if self.smer == 1:
+                self.x += 50
+            elif self.smer == -1:
+                self.x -= 50
+            self.pocitadlo_pohyb = 0
+        
+        self.rect = pygame.rect.Rect(self.x, self.y, 50, 50) 
 
     def pusteni_jidla(self):
         pass
@@ -44,7 +61,7 @@ class Jidlo:
         self.pocitadlo = 0
         self.image = None
 
-    def ukaz():
+    def ukaz(self):
         pass
 
     def pohyb(self):
