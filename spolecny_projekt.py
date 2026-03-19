@@ -56,7 +56,12 @@ class Jidlo:
         okno.blit(self.image, self.rect)
 
     def pohyb(self):
-        pass
+        self.pocitadlo += 1
+
+        if self.pocitadlo == 10:
+            self.y += 10
+            self.rect = pygame.rect.Rect(self.x, self.y, 50, 50)
+            self.pocitadlo = 0
 
     def kolize_s_postavickou(self):
         pass
