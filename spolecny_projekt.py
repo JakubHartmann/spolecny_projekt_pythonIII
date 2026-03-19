@@ -2,7 +2,7 @@ import pygame
 
 pygame.init()
 
-VELIKOST_LODE = 100
+# VELIKOST_LODE = 50
 
 
 class Postavicka:
@@ -27,7 +27,7 @@ class Lod:
         self.pocitadlo_pohyb = 0
         self.pocitadlo_pusteni_jidla = 0
         self.image = pygame.image.load("obrazek.gif")
-        self.scaled_image = pygame.transform.scale(self.image, (VELIKOST_LODE, VELIKOST_LODE))
+        self.scaled_image = pygame.transform.scale(self.image, (50, 50))
 
     def ukaz(self):
         okno.blit(self.scaled_image, (self.x, self.y))
