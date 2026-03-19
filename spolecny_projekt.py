@@ -29,11 +29,12 @@ class Postavicka:
 
 class Lod:
     def __init__(self):
-        self.x = 450
-        self.y = 100
+        self.x = 50
+        self.y = 70
         self.rect = pygame.rect.Rect(self.x, self.y, 50, 50)
         self.pocitadlo_pohyb = 0
         self.pocitadlo_pusteni_jidla = 0
+        self.smer = 1 
         self.image = pygame.image.load("obrazek.gif")
         self.scaled_image = pygame.transform.scale(self.image, (50, 50))
 
@@ -41,7 +42,23 @@ class Lod:
         okno.blit(self.scaled_image, (self.x, self.y))
 
     def pohyb(self):
-        pass
+        
+        self.pocitadlo_pohyb += 1
+        
+        if self.x >= 770:
+         self.smer = -1
+        elif self.x <= 70:
+            self.smer = 1
+
+
+        if self.pocitadlo_pohyb == 10:
+            if self.smer == 1:
+                self.x += 50
+            elif self.smer == -1:
+                self.x -= 50
+            self.pocitadlo_pohyb = 0
+        
+        self.rect = pygame.rect.Rect(self.x, self.y, 50, 50) 
 
     def pusteni_jidla(self):
         self.pocitadlo_pusteni_jidla += 1
