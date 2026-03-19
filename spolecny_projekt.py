@@ -25,10 +25,10 @@ class Lod:
         self.pocitadlo_pohyb = 0
         self.pocitadlo_pusteni_jidla = 0
         self.smer = 1 
-        self.image = pygame.image.load("ovoce.png")# change afterwards
+        self.image = None
 
     def ukaz(self):
-        okno.blit(self.image, self.rect)# delete 
+         pass
 
     def pohyb(self):
         
