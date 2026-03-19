@@ -49,10 +49,11 @@ class Jidlo:
         self.y = y
         self.rect = pygame.rect.Rect(self.x, self.y, 50, 50)
         self.pocitadlo = 0
-        self.image = None
+        self.image = pygame.image.load("jidlo_obrazek.png")
+        self.image = pygame.transform.scale(self.image, (50, 50))
 
-    def ukaz():
-        pass
+    def ukaz(self):
+        okno.blit(self.image, self.rect)
 
     def pohyb(self):
         pass
