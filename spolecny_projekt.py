@@ -14,8 +14,15 @@ class Postavicka:
     def ukaz(self):
         pass
 
-    def pohyb(self, smer):
-        pass
+    def pohyb(self):
+        zmacknuti = pygame.key.get_pressed()
+
+        if zmacknuti[pygame.K_a]:
+            self.x -= 10
+        if zmacknuti[pygame.K_d]:
+            self.x += 10
+
+        self.rect =  pygame.rect.Rect(self.x, self.y, 50, 50)
 
 class Lod:
     def __init__(self):
@@ -69,10 +76,9 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    zmacknuti = pygame.key.get_pressed()
-
     okno.fill("Black")
     postavicka.ukaz()
+    postavicka.pohyb()
     lod.ukaz()
     lod.pusteni_jidla()
     lod.pohyb()
@@ -93,6 +99,12 @@ while running:
 # vypisovani skore
 # vyreseni kolize jidla a postavicky
 # pusteni jidla
+
+# adam : pusteni jidla
+# lukas : pohyb lode
+# david : textura postavicky
+# vojta : zbutek lode
+# sebastian : zbytek jidla
 
 
 
