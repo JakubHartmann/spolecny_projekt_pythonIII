@@ -64,7 +64,10 @@ class Jidlo:
             self.pocitadlo = 0
 
     def kolize_s_postavickou(self):
-        pass
+        global skore
+        if self.rect.colliderect(postavicka.rect):
+            skore += 1
+            seznam_jidel.remove(self)
 
 
 
