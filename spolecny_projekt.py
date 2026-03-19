@@ -24,10 +24,10 @@ class Lod:
         self.rect = pygame.rect.Rect(self.x, self.y, 50, 50)
         self.pocitadlo_pohyb = 0
         self.pocitadlo_pusteni_jidla = 0
-        self.image = None
+        self.image = pygame.image.load("obrazek.png")
 
     def ukaz(self):
-        pass
+        okno.blit(self.image, (self.x, self.y))
 
     def pohyb(self):
         pass
