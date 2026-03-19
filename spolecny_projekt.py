@@ -2,20 +2,30 @@ import pygame
 
 pygame.init()
 
+# VELIKOST_LODE = 50
+
+
 
 class Postavicka:
     def __init__(self):
         self.x = 450
         self.y = 600
-        self.rect = pygame.rect.Rect(self.x, self.y, 50, 50)
-        self.image = None
-
+        self.image = pygame.image.load("vojak.png")
+        self.image = pygame.transform.scale(self.image, (50, 50))
+        self.rect = self.image.get_rect(topleft=(self.x, self.y))
 
     def ukaz(self):
-        pass
+        okno.blit(self.image, self.rect)
 
-    def pohyb(self, smer):
-        pass
+    def pohyb(self,tlacitka):
+        self.dx = 0
+        self.speed = 4
+        if tlacitka[pygame.K_d]:
+            self.dx = 1
+        if tlacitka[pygame.K_a]:
+            self.dx = -1
+        self.x += self.dx * self.speed
+        self.rect.topleft = (self.x, self.y)
 
 class Lod:
     def __init__(self):
@@ -25,10 +35,11 @@ class Lod:
         self.pocitadlo_pohyb = 0
         self.pocitadlo_pusteni_jidla = 0
         self.smer = 1 
-        self.image = None
+        self.image = pygame.image.load("obrazek.gif")
+        self.scaled_image = pygame.transform.scale(self.image, (50, 50))
 
     def ukaz(self):
-         pass
+        okno.blit(self.scaled_image, (self.x, self.y))
 
     def pohyb(self):
         
@@ -50,7 +61,12 @@ class Lod:
         self.rect = pygame.rect.Rect(self.x, self.y, 50, 50) 
 
     def pusteni_jidla(self):
-        pass
+        self.pocitadlo_pusteni_jidla += 1
+        if self.pocitadlo_pusteni_jidla == 60:
+            seznam_jidel.append(Jidlo(self.x,self.y))
+            self.pocitadlo_pusteni_jidla = 0
+
+
 
 
 class Jidlo:
@@ -59,16 +75,24 @@ class Jidlo:
         self.y = y
         self.rect = pygame.rect.Rect(self.x, self.y, 50, 50)
         self.pocitadlo = 0
-        self.image = None
+        self.image = pygame.image.load("cervenyhrac.png")
+        self.image = pygame.transform.scale(self.image,(50,50))
 
     def ukaz(self):
-        pass
+        okno.blit(self.image,self.rect)
 
     def pohyb(self):
-        pass
+        self.pocitadlo += 1
+        if self.pocitadlo == 10:
+            self.y += 10
+            self.pocitadlo = 0
+            self.rect = pygame.rect.Rect(self.x, self.y, 50, 50)
 
     def kolize_s_postavickou(self):
-        pass
+        global skore
+        if self.rect.colliderect(postavicka.rect):
+            skore += 1
+            seznam_jidel.remove(self)
 
 
 
@@ -76,6 +100,7 @@ skore = 0
 seznam_jidel = []
 postavicka = Postavicka()
 lod= Lod()
+
 
 okno = pygame.display.set_mode((800, 800))
 clock = pygame.time.Clock()
@@ -85,6 +110,8 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
+
 
     zmacknuti = pygame.key.get_pressed()
 
