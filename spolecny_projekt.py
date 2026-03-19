@@ -14,8 +14,15 @@ class Postavicka:
     def ukaz(self):
         okno.blit(self.image, self.rect)
 
-    def pohyb(self, smer):
-        pass
+    def pohyb(self,tlacitka):
+        self.dx = 0
+        self.speed = 4
+        if tlacitka[pygame.K_d]:
+            self.dx = 1
+        if tlacitka[pygame.K_a]:
+            self.dx = -1
+        self.x += self.dx * self.speed
+        self.rect.topleft = (self.x, self.y)
 
 class Lod:
     def __init__(self):
