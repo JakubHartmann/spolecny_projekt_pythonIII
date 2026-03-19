@@ -2,6 +2,8 @@ import pygame
 
 pygame.init()
 
+VELIKOST_LODE = 100
+
 
 class Postavicka:
     def __init__(self):
@@ -24,10 +26,11 @@ class Lod:
         self.rect = pygame.rect.Rect(self.x, self.y, 50, 50)
         self.pocitadlo_pohyb = 0
         self.pocitadlo_pusteni_jidla = 0
-        self.image = pygame.image.load("obrazek.png")
+        self.image = pygame.image.load("obrazek.gif")
+        self.scaled_image = pygame.transform.scale(self.image, (VELIKOST_LODE, VELIKOST_LODE))
 
     def ukaz(self):
-        okno.blit(self.image, (self.x, self.y))
+        okno.blit(self.scaled_image, (self.x, self.y))
 
     def pohyb(self):
         pass
