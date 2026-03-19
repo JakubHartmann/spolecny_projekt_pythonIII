@@ -8,15 +8,22 @@ class Postavicka:
     def __init__(self):
         self.x = 450
         self.y = 600
-        self.rect = pygame.rect.Rect(self.x, self.y, 50, 50)
-        self.image = None
-
+        self.image = pygame.image.load("vojak.png")
+        self.image = pygame.transform.scale(self.image, (50, 50))
+        self.rect = self.image.get_rect(topleft=(self.x, self.y))
 
     def ukaz(self):
-        pass
+        okno.blit(self.image, self.rect)
 
-    def pohyb(self, smer):
-        pass
+    def pohyb(self,tlacitka):
+        self.dx = 0
+        self.speed = 4
+        if tlacitka[pygame.K_d]:
+            self.dx = 1
+        if tlacitka[pygame.K_a]:
+            self.dx = -1
+        self.x += self.dx * self.speed
+        self.rect.topleft = (self.x, self.y)
 
 class Lod:
     def __init__(self):
