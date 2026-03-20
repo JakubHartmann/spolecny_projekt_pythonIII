@@ -67,7 +67,12 @@ class Lod:
             seznam_jidel.append(Jidlo(self.x,self.y))
             self.pocitadlo_pusteni_jidla = 0
 
-
+class Score:
+    def __init__(self):
+        self.score = 0
+    def vypis(self):
+        text = font.render("score: " + str(self.score), True, (255, 255, 255))
+        okno.blit(text, (20, 20))
 
 
 class Jidlo:
@@ -92,20 +97,23 @@ class Jidlo:
     def kolize_s_postavickou(self):
         global skore
         if self.rect.colliderect(postavicka.rect):
-            skore += 1
+            score.score += 1
             seznam_jidel.remove(self)
 
 
 
-skore = 0
 seznam_jidel = []
 postavicka = Postavicka()
 lod= Lod()
+score = Score()
 
 
 okno = pygame.display.set_mode((800, 800))
 clock = pygame.time.Clock()
 running = True
+
+# pro vykresleni score
+font = pygame.font.Font(None, 48)
 
 while running:
     for event in pygame.event.get():
@@ -118,6 +126,7 @@ while running:
     lod.ukaz()
     lod.pusteni_jidla()
     lod.pohyb()
+    score.vypis()
     for jidlo in seznam_jidel:
         jidlo.ukaz()
         jidlo.pohyb()
